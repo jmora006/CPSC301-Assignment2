@@ -12,9 +12,8 @@ void readData(Person array[], int size)
 	string lName;
 	float rate;
 	float hours;
-	Person obj;
+
 	ifstream file("input.txt");
-	
 	for(int i = 0; i < size; i++)
 	{
 		if(!file.eof())
@@ -36,6 +35,7 @@ void writeData(Person array[], int size)
 {
 	string fullName;
 	float total;
+	
 	ofstream file("output.txt");
 	if(file.is_open())
 	{
