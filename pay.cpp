@@ -41,11 +41,10 @@ void writeData(Person array[], int size)
 	{
 		for(int i = 0; i < size; i++)
 		{
-			cout<<fixed<<setprecision(2);
 			fullName = array[i].fullName();
 			total = array[i].totalPay();
-			file<<fullName<<" "<<total<<endl;
-			cout<<fullName<<" "<<total<<endl; //Printing out the output to check on Terminal window
+			file<<fullName<<" "<<fixed<<setprecision(2)<<total<<endl;
+			cout<<fullName<<" "<<fixed<<setprecision(2)<<total<<endl; //Printing out the output to check on Terminal window
 		}
 		file.close(); 
 	}
