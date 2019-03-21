@@ -4,9 +4,9 @@
 #include "person.cpp"
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <string>
 #include <iomanip>
-#include <vector>
 
 using namespace std;
 
@@ -23,10 +23,10 @@ void readData(vector<Person> &employees)
 		file>>fName;
 		while(!file.eof())
 		{
-			file>>fName;
+			//file>>fName;
 			file>>lName;
-			file>>hours;
 			file>>rate;
+			file>>hours;
 			employees.emplace_back(fName, lName, rate, hours);
 		}
 	}
@@ -46,7 +46,8 @@ void writeData(vector<Person> &employees)
 			fullName = employees[i].fullName();
 			total = employees[i].totalPay();
 			file<<fullName<<" "<<fixed<<setprecision(2)<<total<<endl;
-			cout<<fullName<<" "<<fixed<<setprecision(2)<<total<<endl; //Printing out the output to check on Terminal window
+			//Printing out the output to check on Terminal window
+			cout<<fullName<<" "<<fixed<<setprecision(2)<<total<<endl;
 		}
 		file.close(); 
 	}
