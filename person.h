@@ -6,7 +6,7 @@ using namespace std;
 class Person
 {
 public:
-	Person();
+	Person(string firstName, string lastName, float payRate, float hoursWorked);
 	void setLastName(string lName);
 	string getLastName();
 	void setFirstName(string fName);
