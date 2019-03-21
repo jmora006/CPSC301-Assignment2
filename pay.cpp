@@ -1,12 +1,16 @@
+//Jason Mora-Mendoza
+//Section 1
+
 #include "person.cpp"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 
-void readData(Person array[], int size)
+void readData(vector<Person> &employees)
 {
 	string fName;
 	string lName;
@@ -14,24 +18,22 @@ void readData(Person array[], int size)
 	float hours;
 
 	ifstream file("input.txt");
-	for(int i = 0; i < size; i++)
+	if(file.is_open())
 	{
-		if(!file.eof())
+		file>>fName;
+		while(!file.eof())
 		{
 			file>>fName;
 			file>>lName;
 			file>>hours;
 			file>>rate;
-			array[i].setFirstName(fName);
-			array[i].setLastName(lName);
-			array[i].setHoursWorked(hours);
-			array[i].setPayRate(rate);
+			employees.emplace_back(fName, lName, rate, hours);
 		}
 	}
 	file.close();
 }
 
-void writeData(Person array[], int size)
+void writeData(vector<Person> &employees)
 {
 	string fullName;
 	float total;
@@ -39,10 +41,10 @@ void writeData(Person array[], int size)
 	ofstream file("output.txt");
 	if(file.is_open())
 	{
-		for(int i = 0; i < size; i++)
+		for(int i = 0; i < employees.size(); i++)
 		{
-			fullName = array[i].fullName();
-			total = array[i].totalPay();
+			fullName = employees[i].fullName();
+			total = employees[i].totalPay();
 			file<<fullName<<" "<<fixed<<setprecision(2)<<total<<endl;
 			cout<<fullName<<" "<<fixed<<setprecision(2)<<total<<endl; //Printing out the output to check on Terminal window
 		}
@@ -52,11 +54,9 @@ void writeData(Person array[], int size)
 
 int main()
 {
-	int size = 20;
-	Person employees[size];
-	
-	readData(employees, 6);
-	writeData(employees, 6);
+	vector<Person> employees;
+	readData(employees);
+	writeData(employees);
 	
 	cin.get();
 	return 0;
